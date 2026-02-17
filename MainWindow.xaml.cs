@@ -197,12 +197,12 @@ namespace MovingCards
                     var newY = renderedY;
 
                     // If it's too far to the right, move it left. Or vice-versa.
-                    if (renderedX > dest.X) newX = renderedX - 2;
-                    else if (renderedX < dest.X) newX = renderedX + 2;
+                    if (renderedX > dest.X) newX = renderedX - 1;
+                    else if (renderedX < dest.X) newX = renderedX + 1;
 
                     // If it's too far to the up, move it down. Or vice-versa.
-                    if (renderedY > dest.Y) newY = renderedY - 2;
-                    else if (renderedY < dest.Y) newY = renderedY + 2;
+                    if (renderedY > dest.Y) newY = renderedY - 1;
+                    else if (renderedY < dest.Y) newY = renderedY + 1;
 
                     // If it's within 3 pixels, snap it. This prevents jitters and overshoots.
                     if (Math.Abs(renderedX - dest.X) <= 3) renderedX = dest.X;
@@ -219,7 +219,7 @@ namespace MovingCards
 
                 // Wait 1 millisecond before looping for the sake of animation.
                 // Or... try messing with this value. It's fun.
-                await Task.Delay(1);
+                await Task.Delay(5);
             }
         }
 

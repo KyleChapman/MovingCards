@@ -10,6 +10,7 @@
 
 // Note the format of this using statement for accessing our new Interface(s).
 using MovingCards.Interfaces;
+using MovingCards.Exceptions;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -113,6 +114,10 @@ namespace MovingCards
         /// </summary>
         public void EndDrag()
         {
+            if (this.Position.X < 0 || this.Position.Y < 0)
+            {
+                throw new InvalidMoveException("Rectangle cannot be partly off-screen.");
+            }
         }
 
         /// <summary>

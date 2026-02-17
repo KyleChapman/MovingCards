@@ -6,6 +6,7 @@
 // Note that several specific methods were generated using Copilot, and those are noted in block comments below.
 
 // Note the format of this using statement for accessing our new Interface(s).
+using MovingCards.Exceptions;
 using MovingCards.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -141,19 +142,36 @@ namespace MovingCards
         /// </summary>
         private void EndDrag()
         {
-            // This just calls EndDrag from the IDraggable interface.
-            if (_activeModel != null)
-                _activeModel.EndDrag();
-
-            _activeElement = null;
-            _activeModel = null;
-
-            // End the drag.
-            if (_isDragging)
+            try
             {
-                _surface.ReleaseMouseCapture();
-                _isDragging = false;
+                // This just calls EndDrag from the IDraggable interface.
+                if (_activeModel != null)
+                    _activeModel.EndDrag();
+
+                _activeElement = null;
+                _activeModel = null;
+
+                // End the drag.
+                if (_isDragging)
+                {
+                    _surface.ReleaseMouseCapture();
+                    _isDragging = false;
+                }
             }
+            catch (InvalidMoveException ex)
+            {
+                if (_activeModel != null)
+                {
+                    MessageBox.Show("Invalid move. " + ex.Message +
+                    "\nX: " + _activeModel.Position.X +
+                    "\nY: " + _activeModel.Position.Y);
+
+                    _isDragging = false; 
+                    _activeModel.Position = _lastSurfacePoint;
+                }
+            }
+
+
         }
 
         /// <summary>
