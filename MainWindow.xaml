@@ -1,0 +1,27 @@
+﻿<Window x:Class="MovingCards.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MovingCards"
+        mc:Ignorable="d"
+        Title="Draggable Cards"
+        MinWidth="200" MinHeight="300"
+        Width="900" Height="600"
+        FontSize="20"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.8,0.99" StartPoint="0.8,0">
+            <!-- I picked some arbitrary nice greens, like a card table, and put them in a gradient. However I could just pick "Green" and "Black" if I wanted to.-->
+            <GradientStop Color="#FF25A325"/>
+            <GradientStop Color="#FF0F3912" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <!-- Using a Canvas for absolute positioning -->
+        <Canvas x:Name="Surface" Background="#11000000">
+            <!-- Cards are added programmatically in code-behind -->
+        </Canvas>
+        <Button Content="_Sort" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Click="SortClick"/>
+    </Grid>
+</Window>
